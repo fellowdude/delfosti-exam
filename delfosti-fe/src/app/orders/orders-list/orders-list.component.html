@@ -1,0 +1,36 @@
+<section class="d-flex justify-content-center align-items-center flex-column mx-auto col-8" style="height: 100vh">
+  <h2 class="bold my-5">Order List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Order Number</th>
+        <th scope="col">State</th>
+        <th scope="col">Product Quantity</th>
+        <th scope="col">Order Date</th>
+        <th scope="col">Estimated Delivery</th>
+        <th scope="col">Delivery</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="orderList.length > 0">
+        <ng-container *ngFor="let order of orderList; let i = index">
+          <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{order?.order_number}}</td>
+            <td>{{order?.state?.value}}</td>
+            <td>{{order?.products?.length || 0}}</td>
+            <td>{{order?.order_date | date}}</td>
+            <td>{{order?.estimated_delivery_date | date}}</td>
+            <td>{{order?.delivery_date | date}}</td>
+            <td><button mdbRipple class="btn btn-primary btn-block" [routerLink]="'detail/'+order?.order_number">Check</button></td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+  <ng-container *ngIf="orderList.length === 0">
+    <h4>No users available.</h4>
+  </ng-container>
+</section>

@@ -1,0 +1,19 @@
+<section class="d-flex justify-content-center align-items-center mx-auto col-6" style="height: 100vh">
+  <form class="w-100" [formGroup]="loginForm" (ngSubmit)="login()">
+    <!-- Email input -->
+    <mdb-form-control class="mb-4">
+      <input mdbInput type="text" id="user_code" class="form-control" formControlName="user_code"/>
+      <label mdbLabel class="form-label" for="user_code">Código de Usuario</label>
+    </mdb-form-control>
+
+    <!-- Password input -->
+    <mdb-form-control class="mb-4">
+      <input mdbInput type="password" id="password" class="form-control" formControlName="password"/>
+      <label mdbLabel class="form-label" for="password">Contraseña</label>
+    </mdb-form-control>
+
+    <!-- Submit button -->
+    <button mdbRipple type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">Sign in</button>
+  </form>
+</section>
+

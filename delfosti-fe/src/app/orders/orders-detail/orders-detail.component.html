@@ -1,0 +1,66 @@
+<section class="d-flex justify-content-around align-items-center flex-row mx-auto col-8" style="height: 100vh" *ngIf="orderDetail">
+  <div class="col-5">
+    <h2>Information</h2>
+    <hr class="hr" />
+    <article class="d-flex justify-content-between align-items-left flex-column">
+      <h4 class="text-center">General Details</h4>
+      <div>
+        <label class="bold-text">Order Number:</label> <label class="px-3">{{orderDetail?.order_number}}</label>
+      </div>
+      <div>
+        <label class="bold-text">Order Date:</label> <label class="px-3">{{orderDetail?.order_date | date}}</label>
+      </div>
+      <div>
+        <label class="bold-text">Order Status:</label> <label class="px-3">{{orderDetail?.state?.value}}</label>
+      </div>
+      <div>
+        <label class="bold-text">Seller:</label> <label class="px-3">{{orderDetail?.seller?.name + ' ' + orderDetail?.seller?.father_last_name + ' ' + orderDetail?.seller?.mother_last_name}}</label>
+      </div>
+
+    </article>
+    <hr class="hr" />
+    <article class="d-flex justify-content-around align-items-left flex-column">
+      <h4 class="text-center">Delivery Details</h4>
+      <div>
+        <label class="bold-text">Order Estimated Delivery:</label> <label class="px-3">{{orderDetail?.estimated_delivery_date | date}}</label>
+      </div>
+      <div>
+        <label class="bold-text">Order Delivery:</label> <label class="px-3">{{orderDetail?.delivery_date | date}}</label>
+      </div>
+      <div>
+        <label class="bold-text">Distributor:</label> <label class="px-3">{{orderDetail?.distributor?.name + ' ' + orderDetail?.distributor?.father_last_name + ' ' + orderDetail?.distributor?.mother_last_name}}</label>
+      </div>
+    </article>
+  </div>
+  <div class="col-5">
+    <h2 >Products</h2>
+    <hr class="hr" />
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit Price</th>
+          <th scope="col">Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="orderDetail && orderDetail.products && orderDetail.products.length > 0">
+          <ng-container *ngFor="let products of orderDetail?.products; let i = index">
+            <tr>
+              <th scope="row">{{i + 1}}</th>
+              <td>{{orderDetail.productList[i]?.name}}</td>
+              <td>{{products.quantity || 0}}</td>
+              <td>{{orderDetail.productList[i]?.price || 0 | currency}}</td>
+              <td>{{(orderDetail.productList[i]?.price || 0) * products.quantity || 0 | currency}}</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+    <ng-container *ngIf="orderDetail?.products?.length === 0">
+      <h4>No products available.</h4>
+    </ng-container>
+  </div>
+</section>

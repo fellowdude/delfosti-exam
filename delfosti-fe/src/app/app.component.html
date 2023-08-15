@@ -1,0 +1,9 @@
+<ng-container *ngIf="inHome">
+  <app-header></app-header>
+</ng-container>
+<div class="m-0 position-relative h-100">
+  <router-outlet></router-outlet>
+</div>
+<ng-container *ngIf="inHome">
+  <app-footer></app-footer>
+</ng-container>

@@ -1,0 +1,21 @@
+<section class="sticky-top w-100 d-block">
+  <nav class="w-100 black">
+    <div class="mw-container mx-auto">
+      <div class="row m-0">
+        <div class="d-flex col-3 p-0 align-items-center" style="height: 85px">
+        </div>
+        <div class="d-flex col-9 p-0 align-items-center justify-content-end">
+          <ng-container *ngFor="let homeAction of homeActionList">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="w-100 h-100 p-4">
+                <a class="black-text" [routerLink]="homeAction.link" routerLinkActive="router-link-active">
+                  <label class="text-white cursor-pointer"><strong>{{homeAction.label}}</strong></label>
+                </a>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </nav>
+</section>
